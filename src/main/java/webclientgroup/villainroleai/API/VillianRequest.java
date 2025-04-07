@@ -10,11 +10,11 @@ import java.util.List;
 @Setter
 @ToString
 
-public class Villian {
+public class VillianRequest {
 
    private  String role;
    private String model;
-   private List<String> message;
+   private List<Message> messages;
    private double temperature;
 
 
