@@ -14,6 +14,8 @@ import java.util.List;
 
 public class VillianReponse {
 
-    private List<Message> messages;
+    private List<Choice> choices;
+
+
 
 }

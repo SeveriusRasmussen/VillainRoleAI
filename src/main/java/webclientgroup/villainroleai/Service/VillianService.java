@@ -35,7 +35,7 @@ public class VillianService {
                 .retrieve()
                 .bodyToMono(VillianReponse.class)
                 .subscribe(response -> {
-                    String content = response.getMessages().get(0).getContent();
+                    String content = response.getChoices().get(0).getMessage().getContent();
                     System.out.println("AI: " + content);
                 });
 
