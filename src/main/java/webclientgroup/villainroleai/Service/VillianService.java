@@ -22,7 +22,6 @@ public class VillianService {
         VillianRequest villianRequest = new VillianRequest();
         WebClient webClient = WebClient.create("https://api.mistral.ai");
 
-        villianRequest.setRole("user");
         villianRequest.setModel("mistral-small-latest");
         villianRequest.setTemperature(1);
         Message message = new Message("user", "Hello, I am a villain. How do i conquer the world?");
@@ -30,13 +29,13 @@ public class VillianService {
 
         webClient.post()
                 .uri("/v1/chat/completions")
-                .header(HttpHeaders.AUTHORIZATION, "Bearer" + key)
+                .header(HttpHeaders.AUTHORIZATION, "Bearer " + key)
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(villianRequest)
                 .retrieve()
                 .bodyToMono(VillianReponse.class)
                 .subscribe(response -> {
-                    String content = response.getContents();
+                    String content = response.getMessages().get(0).getContent();
                     System.out.println("AI: " + content);
                 });
 

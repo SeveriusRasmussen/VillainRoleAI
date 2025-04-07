@@ -14,8 +14,6 @@ import java.util.List;
 
 public class VillianReponse {
 
-    private String role;
-    private String contents;
-    private List<String> Message;
+    private List<Message> messages;
 
 }

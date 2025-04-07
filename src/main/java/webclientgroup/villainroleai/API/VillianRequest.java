@@ -12,7 +12,6 @@ import java.util.List;
 
 public class VillianRequest {
 
-   private  String role;
    private String model;
    private List<Message> messages;
    private double temperature;
