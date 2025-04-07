@@ -2,6 +2,8 @@ package webclientgroup.villainroleai.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Mono;
+import webclientgroup.villainroleai.api.VillainResponse;
 import webclientgroup.villainroleai.service.VillainService;
 
 @RestController
@@ -14,7 +16,7 @@ public class AIController {
     }
 
     @GetMapping("/villain")
-    public void getVillain() {
-        villainService.getResponse();
+    public Mono<VillainResponse> getVillain() {
+        return villainService.getResponse();
     }
 }

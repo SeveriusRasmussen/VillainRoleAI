@@ -5,6 +5,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 import webclientgroup.villainroleai.api.Message;
 import webclientgroup.villainroleai.api.VillainRequest;
 import webclientgroup.villainroleai.api.VillainResponse;
@@ -17,7 +18,7 @@ public class VillainService {
     private String key; //Secret API key for AI
 
     //get response. Should take parameter with message content later. And hsould be renamed.
-    public void getResponse() {
+    public Mono<VillainResponse> getResponse() {
         WebClient webClient = WebClient.create("https://api.mistral.ai");
 
         VillainRequest villianRequest = new VillainRequest();//new villain request. Contains messages.
@@ -31,19 +32,20 @@ public class VillainService {
         villianRequest.setMessages(List.of(message)); //set messages in villainRequest. List.of(message) creates new List<Message> containing message.
 
         //post message, return AI response:
-        webClient.post()
+        Mono<VillainResponse> villainResponseMono = webClient.post()
                 .uri("/v1/chat/completions")//specify endpoint.
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + key) //set credentials
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(villianRequest)//create JSON from villainRequest.
                 .retrieve()//get response
-                .bodyToMono(VillainResponse.class)//create mono from response.
-                .subscribe(response -> { //??
+                .bodyToMono(VillainResponse.class);//create mono from response.
+                /*.subscribe(response -> { //??
                     String content = response.getChoices().get(0).getMessage().getContent(); //get content from response.
                     System.out.println("AI: " + content); //print content.
                 });
-
+*/
         //System.out.println(villianRequest); //
+        return villainResponseMono;
     }
 }
 
