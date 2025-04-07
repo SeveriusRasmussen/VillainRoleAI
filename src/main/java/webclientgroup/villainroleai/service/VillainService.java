@@ -21,22 +21,22 @@ public class VillainService {
     public Mono<VillainResponse> getResponse() {
         WebClient webClient = WebClient.create("https://api.mistral.ai");
 
-        VillainRequest villianRequest = new VillainRequest();//new villain request. Contains messages.
+        VillainRequest villainRequest = new VillainRequest();//new villain request. Contains messages.
 
-        villianRequest.setModel("mistral-small-latest"); //get AI model.
-        villianRequest.setTemperature(1); //how RANDOM should the answer be.
+        villainRequest.setModel("mistral-small-latest"); //get AI model.
+        villainRequest.setTemperature(1); //how RANDOM should the answer be.
         Message message = new Message("user", "Hello, I am a villain. How do i conquer the world?"); //set role and content of message.
         //user: user message (eg. "what's the best cheese?")
         //system: how should the AI behave. (eg. be a snobby parisian)
 
-        villianRequest.setMessages(List.of(message)); //set messages in villainRequest. List.of(message) creates new List<Message> containing message.
+        villainRequest.setMessages(List.of(message)); //set messages in villainRequest. List.of(message) creates new List<Message> containing message.
 
         //post message, return AI response:
         Mono<VillainResponse> villainResponseMono = webClient.post()
                 .uri("/v1/chat/completions")//specify endpoint.
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + key) //set credentials
                 .contentType(MediaType.APPLICATION_JSON)
-                .bodyValue(villianRequest)//create JSON from villainRequest.
+                .bodyValue(villainRequest)//create JSON from villainRequest.
                 .retrieve()//get response
                 .bodyToMono(VillainResponse.class);//create mono from response.
                 /*.subscribe(response -> { //??
