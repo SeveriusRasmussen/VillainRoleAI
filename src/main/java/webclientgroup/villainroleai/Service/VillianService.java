@@ -1,6 +1,7 @@
 package webclientgroup.villainroleai.Service;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -27,12 +28,9 @@ public class VillianService {
         Message message = new Message("user", "Hello, I am a villain. How do i conquer the world?");
         villianRequest.setMessages(List.of(message));
 
-
-
-
         webClient.post()
                 .uri("/v1/chat/completions")
-                .header("Authorization", key)
+                .header(HttpHeaders.AUTHORIZATION, "Bearer" + key)
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(villianRequest)
                 .retrieve()
@@ -43,8 +41,6 @@ public class VillianService {
                 });
 
         System.out.println(villianRequest);
-
-
     }
 }
 
