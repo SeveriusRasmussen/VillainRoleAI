@@ -1,4 +1,4 @@
-package webclientgroup.villainroleai.API;
+package webclientgroup.villainroleai.api;
 
 import lombok.*;
 
@@ -9,8 +9,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-
-public class VillianRequest {
+public class VillainRequest {
 
    private String model;
    private List<Message> messages;

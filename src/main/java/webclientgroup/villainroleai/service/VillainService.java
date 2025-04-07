@@ -1,18 +1,18 @@
-package webclientgroup.villainroleai.Service;
+package webclientgroup.villainroleai.service;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
-import webclientgroup.villainroleai.API.Message;
-import webclientgroup.villainroleai.API.VillianRequest;
-import webclientgroup.villainroleai.API.VillianReponse;
+import webclientgroup.villainroleai.api.Message;
+import webclientgroup.villainroleai.api.VillainRequest;
+import webclientgroup.villainroleai.api.VillainResponse;
 
 import java.util.List;
 
 @Service
-public class VillianService {
+public class VillainService {
     @Value("${api.key}")
     private String key; //Secret API key for AI
 
@@ -20,7 +20,7 @@ public class VillianService {
     public void getResponse() {
         WebClient webClient = WebClient.create("https://api.mistral.ai");
 
-        VillianRequest villianRequest = new VillianRequest();//new villain request. Contains messages.
+        VillainRequest villianRequest = new VillainRequest();//new villain request. Contains messages.
 
         villianRequest.setModel("mistral-small-latest"); //get AI model.
         villianRequest.setTemperature(1); //how RANDOM should the answer be.
@@ -37,7 +37,7 @@ public class VillianService {
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(villianRequest)//create JSON from villainRequest.
                 .retrieve()//get response
-                .bodyToMono(VillianReponse.class)//create mono from response.
+                .bodyToMono(VillainResponse.class)//create mono from response.
                 .subscribe(response -> { //??
                     String content = response.getChoices().get(0).getMessage().getContent(); //get content from response.
                     System.out.println("AI: " + content); //print content.

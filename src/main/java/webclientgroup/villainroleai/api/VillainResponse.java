@@ -1,4 +1,4 @@
-package webclientgroup.villainroleai.API;
+package webclientgroup.villainroleai.api;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class VillianReponse {
+public class VillainResponse {
 
     private List<Choice> choices;
 

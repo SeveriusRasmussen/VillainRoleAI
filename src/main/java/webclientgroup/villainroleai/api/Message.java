@@ -1,4 +1,4 @@
-package webclientgroup.villainroleai.API;
+package webclientgroup.villainroleai.api;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
