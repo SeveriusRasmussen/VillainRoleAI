@@ -13,10 +13,8 @@ public class AIController {
         this.villainService = villainService;
     }
 
-    @GetMapping("/Villian")
-    public void getVillian() {
+    @GetMapping("/villain")
+    public void getVillain() {
         villainService.getResponse();
-
-
     }
 }
