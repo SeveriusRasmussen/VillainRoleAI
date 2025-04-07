@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Setter
 @Getter
 @NoArgsConstructor
@@ -12,5 +14,8 @@ import lombok.Setter;
 
 public class VillianReponse {
 
-    private String returnMessagde;
+    private String role;
+    private String contents;
+    private List<String> Message;
+
 }

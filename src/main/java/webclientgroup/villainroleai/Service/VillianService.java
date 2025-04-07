@@ -14,12 +14,15 @@ public class VillianService {
 
 
 
-    public String getResponse(Villian villian) {
+    public void getResponse(Villian villian) {
 
-        WebClient webClient = WebClient.create("");
+        WebClient webClient = WebClient.create("https://api.mistral.ai/v1/chat/completions");
 
         villian.setRole("user");
         villian.setModel("mistral-small-latest");
+        villian.setTemperature(1);
+        villian.setMessage("boo ");
+
 
 
         webClient.post()
@@ -28,11 +31,13 @@ public class VillianService {
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(villian)
                 .retrieve()
-                .bodyToMono(VillianReponse.class);
-        
+                .bodyToMono(VillianReponse.class)
+                .subscribe(response -> {
+                    String content = response.getReturnMessage();
+                    System.out.println("AI: " + content);
+                });
 
-
-        return VillianReponse;
+        System.out.println(villian);
 
 
     }
