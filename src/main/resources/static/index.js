@@ -9,13 +9,13 @@ function sendQuestion() {
     fetch('http://localhost:8080/villain?question=' + question)//fetch ai response from backend url.
         .then(response => {
             if (response.ok){
-                response.json();//convert response to json.
+                return response.json();//convert response to json.
             }else{
                 console.log("response not ok");
             }
         })
         .then(data => {
-            aiResponseElement.textContent = data.choices[0].message.content; //set ai response text: first message in Response.choices.
+           aiResponseElement.textContent = data.choices[0].message.content; //set ai response text: first message in Response.choices.
             console.log("set ai response text");
 
         })
