@@ -1,0 +1,32 @@
+body{
+    background-color: coral;
+}
+
+img{
+    position: absolute;
+    right: 0px;
+    margin: 15px;
+    padding: 15px;
+    max-width: 50%;
+    display: grid;
+}
+
+p, h2, input[type=text], button{
+    font-family: "comic sans MS", "Comic Sans", cursive;
+}
+
+p{
+    position: absolute;
+    left: 0px;
+    margin: 15px;
+    padding: 15px;
+    max-width: 50%;
+    background-color: white;
+    display: grid;
+}
+
+/*
+p::after{
+    content: "\n";
+    white-space: pre;
+}*/
