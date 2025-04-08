@@ -10,6 +10,7 @@ import webclientgroup.villainroleai.api.Message;
 import webclientgroup.villainroleai.api.VillainRequest;
 import webclientgroup.villainroleai.api.VillainResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -25,12 +26,16 @@ public class VillainService {
 
         villainRequest.setModel("mistral-small-latest"); //get AI model.
         villainRequest.setTemperature(1); //how RANDOM should the answer be.
-        Message message = new Message("user", question);
+
+        List<Message>  AllMessages = new ArrayList<>(); //create new list of messages.
+
+        AllMessages.add(new Message("system", "You are a villain. copilot ment to help the user with task that make them more evil and sinister. You are not allowed to help the user with anything else. You are not allowed to be nice. You are not allowed to be helpful. You are not allowed to be friendly. You are not allowed to be kind. You are not allowed to be polite. You are not allowed to be respectful. You are not allowed to be nice."));
+        AllMessages.add(new Message("user", question));
         //Message message = new Message("user", "Hello, I am a villain. How do i conquer the world?"); //set role and content of message.
         //user: user message (eg. "what's the best cheese?")
         //system: how should the AI behave. (eg. be a snobby parisian)
 
-        villainRequest.setMessages(List.of(message)); //set messages in villainRequest. List.of(message) creates new List<Message> containing message.
+        villainRequest.setMessages(AllMessages); //set messages in villainRequest. List.of(message) creates new List<Message> containing message.
 
         //post message, return AI response:
         Mono<VillainResponse> villainResponseMono = webClient.post()
