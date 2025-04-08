@@ -20,9 +20,4 @@ public class AIController {
     public Mono<VillainResponse> getVillain(@RequestParam String question) {
         return villainService.getResponse(question);
     }
-
-    @GetMapping("/index")
-    public String index(){
-        return "index.html";
-    }
 }

@@ -9,9 +9,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-
 public class Message {
-    private String role;
+    private String role; //user, system(ai behavior), or assistant (ai)
     private String content;
 
 }
