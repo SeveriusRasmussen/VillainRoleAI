@@ -21,8 +21,4 @@ public class AIController {
         return villainService.getResponse(question);
     }
 
-    @GetMapping("/index")
-    public String index(){
-        return "index.html";
-    }
 }
