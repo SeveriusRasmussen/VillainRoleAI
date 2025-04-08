@@ -6,7 +6,7 @@ function sendQuestion() {
     aiResponseElement.textContent = "Venter på svar..."; //set ai response
 
     //get ai response from backend.
-    fetch('localhost:8080/villain?question=' + question)//fetch ai response from backend url.
+    fetch('http://localhost:8080/villain?question=' + question)//fetch ai response from backend url.
         .then(response => {
             if (response.ok){
                 response.json();//convert response to json.
