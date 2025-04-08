@@ -6,7 +6,7 @@ function sendQuestion() {
     aiResponseElement.textContent = "Venter på svar..."; //set ai response
 
     //get ai response from backend.
-    fetch('/villain?question=' + question)//fetch ai response from backend url.
+    fetch('localhost:8080/villain?question=' + question)//fetch ai response from backend url.
         .then(response => {
             if (response.ok){
                 response.json();//convert response to json.
@@ -20,7 +20,7 @@ function sendQuestion() {
 
         })
         .catch(error => { //error handling.
-            console.error('Fejl: ' + error);
+            console.log('Fejl: ' + error);
             aiResponseElement.textContent = "Noget gik galt, prøv igen.";
         }); //end of fetch.
 }
