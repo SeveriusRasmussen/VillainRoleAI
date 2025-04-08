@@ -28,14 +28,12 @@ public class VillainService {
         villainRequest.setTemperature(1); //how RANDOM should the answer be.
 
         List<Message>  AllMessages = new ArrayList<>(); //create new list of messages.
-
         AllMessages.add(new Message("system", "You are a villain. copilot ment to help the user with task that make them more evil and sinister. You are not allowed to help the user with anything else. You are not allowed to be nice. You are not allowed to be helpful. You are not allowed to be friendly. You are not allowed to be kind. You are not allowed to be polite. You are not allowed to be respectful. You are not allowed to be nice."));
         AllMessages.add(new Message("user", question));
-        //Message message = new Message("user", "Hello, I am a villain. How do i conquer the world?"); //set role and content of message.
         //user: user message (eg. "what's the best cheese?")
         //system: how should the AI behave. (eg. be a snobby parisian)
 
-        villainRequest.setMessages(AllMessages); //set messages in villainRequest. List.of(message) creates new List<Message> containing message.
+        villainRequest.setMessages(AllMessages); //set messages in villainRequest.
 
         //post message, return AI response:
         Mono<VillainResponse> villainResponseMono = webClient.post()
@@ -45,13 +43,8 @@ public class VillainService {
                 .bodyValue(villainRequest)//create JSON from villainRequest.
                 .retrieve()//get response
                 .bodyToMono(VillainResponse.class);//create mono from response.
-                /*.subscribe(response -> { //??
-                    String content = response.getChoices().get(0).getMessage().getContent(); //get content from response.
-                    System.out.println("AI: " + content); //print content.
-                });
-*/
-        //System.out.println(villianRequest); //
-        return villainResponseMono;
+
+        return villainResponseMono; //return AI response as Mono.
     }
 }
 

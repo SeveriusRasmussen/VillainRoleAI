@@ -9,11 +9,8 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-public class VillainRequest {
-
-   private String model;
+public class VillainRequest { //messages sent to AI.
+   private String model; //defines AI model. eg mistral, latest, small, large.
    private List<Message> messages;
    private double temperature;
-
-
 }

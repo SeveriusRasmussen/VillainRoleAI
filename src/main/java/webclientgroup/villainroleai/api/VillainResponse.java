@@ -11,11 +11,6 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class VillainResponse {
-
     private List<Choice> choices;
-
-
-
 }

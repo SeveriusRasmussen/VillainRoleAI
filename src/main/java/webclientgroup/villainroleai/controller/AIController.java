@@ -9,13 +9,13 @@ import webclientgroup.villainroleai.service.VillainService;
 
 @RestController
 public class AIController {
-
     private final VillainService villainService;
 
     public AIController(VillainService villainService) {
         this.villainService = villainService;
     }
 
+    //send RequestParam question to AI and return AI response.
     @GetMapping("/villain")
     public Mono<VillainResponse> getVillain(@RequestParam String question) {
         return villainService.getResponse(question);
