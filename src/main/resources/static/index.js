@@ -6,11 +6,21 @@ function sendQuestion() {
     aiResponseElement.textContent = "Venter på svar..."; //set ai response
 
     //get ai response from backend.
-    fetch('/villain?question=' + encodeURIComponent(question))//fetch ai response from backend url.
-        .then(response => response.json())  //convert response to json.
-        .then(data => aiResponseElement.textContent = data.choices[0].message.content) //set ai response text: first message in Response.choices.
+    fetch('/villain?question=' + question)//fetch ai response from backend url.
+        .then(response => {
+            if (response.ok){
+                response.json();//convert response to json.
+            }else{
+                console.log("response not ok");
+            }
+        })
+        .then(data => {
+            aiResponseElement.textContent = data.choices[0].message.content; //set ai response text: first message in Response.choices.
+            console.log("set ai response text");
+
+        })
         .catch(error => { //error handling.
-            console.error('Fejl:', error);
+            console.error('Fejl: ' + error);
             aiResponseElement.textContent = "Noget gik galt, prøv igen.";
         }); //end of fetch.
 }
