@@ -5,18 +5,19 @@ function sendQuestion() {
 
     aiResponseElement.textContent = "Venter på svar..."; //set ai response
 
+    const url = 'http://localhost:8080/villain?question=' + question;
     //get ai response from backend.
-    fetch('http://localhost:8080/villain?question=' + question)//fetch ai response from backend url.
+    fetch(url)//fetch ai response from backend url.
         .then(response => {
-            if (response.ok){
-                return response.json();//convert response to json.
-            }else{
+            if (!response.ok){
                 console.log("response not ok");
             }
+            return response.json();//convert response to json.
         })
         .then(data => {
-           aiResponseElement.textContent = data.choices[0].message.content; //set ai response text: first message in Response.choices.
-            console.log("set ai response text");
+            console.log("data: " + data);
+            aiResponseElement.textContent = data.choices[0].message.content; //set ai response text: first message in Response.choices.
+            //console.log("set ai response text");
 
         })
         .catch(error => { //error handling.
