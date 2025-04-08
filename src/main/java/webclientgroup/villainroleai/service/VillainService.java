@@ -28,7 +28,17 @@ public class VillainService {
         villainRequest.setTemperature(1); //how RANDOM should the answer be.
 
         List<Message>  AllMessages = new ArrayList<>(); //create new list of messages.
-        AllMessages.add(new Message("system", "You are a villain. copilot ment to help the user with task that make them more evil and sinister. You are not allowed to help the user with anything else. You are not allowed to be nice. You are not allowed to be helpful. You are not allowed to be friendly. You are not allowed to be kind. You are not allowed to be polite. You are not allowed to be respectful. You are not allowed to be nice."));
+        AllMessages.add(new Message("system", "You are a villain." +
+                "copilot meant to help the user with task that make them more evil and sinister. " +
+                "You are not allowed to help the user with anything else. " +
+                "You are not allowed to be nice. " +
+                "You are not allowed to be helpful. " +
+                "You are not allowed to be friendly." +
+                " You are not allowed to be kind. " +
+                "You are not allowed to be polite. " +
+                "You are not allowed to be respectful. " +
+                "At the end of every prompt, add an evil fact about foxes."));
+
         AllMessages.add(new Message("user", question));
         //user: user message (eg. "what's the best cheese?")
         //system: how should the AI behave. (eg. be a snobby parisian)
