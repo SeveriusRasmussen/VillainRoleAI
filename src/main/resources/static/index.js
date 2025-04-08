@@ -1,3 +1,10 @@
+const foxImage = document.createElement("img")
+foxImage.id="foxImage";
+foxImage.src=fetchFox();
+foxImage.alt="image of a fox";
+document.body.appendChild(foxImage);
+
+
 //sends user question to AI
 function sendQuestion() {
     const question = document.getElementById('question').value; //get question from user form.
@@ -24,4 +31,22 @@ function sendQuestion() {
             console.log('Fejl: ' + error);
             aiResponseElement.textContent = "Noget gik galt, prøv igen.";
         }); //end of fetch.
+}
+
+//get random image of a fox
+function fetchFox(){
+    const url = "http://localhost:8080/fox"; //backend url
+    fetch(url)
+        .then(response => {
+            if(!response.ok){
+                console.log("could not fetch fox");
+            }
+            return response.json();
+        }).then(data => {
+            console.log("image: " + data.image);
+            return data.image; //return fox image.
+    }).catch(error => {
+        console.log("fejl i ræv: " + error);
+    });
+
 }
