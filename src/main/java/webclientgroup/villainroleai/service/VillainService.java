@@ -6,9 +6,9 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
-import webclientgroup.villainroleai.api.Message;
-import webclientgroup.villainroleai.api.VillainRequest;
-import webclientgroup.villainroleai.api.VillainResponse;
+import webclientgroup.villainroleai.aiapi.Message;
+import webclientgroup.villainroleai.aiapi.VillainRequest;
+import webclientgroup.villainroleai.aiapi.VillainResponse;
 
 import java.util.ArrayList;
 import java.util.List;

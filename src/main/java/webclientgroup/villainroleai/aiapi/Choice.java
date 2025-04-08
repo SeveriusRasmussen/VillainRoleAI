@@ -1,4 +1,4 @@
-package webclientgroup.villainroleai.api;
+package webclientgroup.villainroleai.aiapi;
 
 import lombok.Getter;
 import lombok.Setter;
