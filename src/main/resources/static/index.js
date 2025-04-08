@@ -1,8 +1,15 @@
 console.log("javascript virker fint ");
 const url = "/villians";
 
+// function sendMessage() {
+//     var userInput = document.getElementById("userInput").value
+// }
+
+
+
+
 function fetchReponse() {
-    fetch(`${url}/charecterSheet/all`)
+    fetch(`${url}/characterSheet/all`)
         .then(response => {
             if (!response.ok) {
                 throw new Error("FEJL NUMBNUTS");
