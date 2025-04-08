@@ -26,7 +26,6 @@ public class VillainService {
         villainRequest.setModel("mistral-small-latest"); //get AI model.
         villainRequest.setTemperature(1); //how RANDOM should the answer be.
         Message message = new Message("user", question);
-        //Message message = new Message("user", "Hello, I am a villain. How do i conquer the world?"); //set role and content of message.
         //user: user message (eg. "what's the best cheese?")
         //system: how should the AI behave. (eg. be a snobby parisian)
 
@@ -40,12 +39,7 @@ public class VillainService {
                 .bodyValue(villainRequest)//create JSON from villainRequest.
                 .retrieve()//get response
                 .bodyToMono(VillainResponse.class);//create mono from response.
-                /*.subscribe(response -> { //??
-                    String content = response.getChoices().get(0).getMessage().getContent(); //get content from response.
-                    System.out.println("AI: " + content); //print content.
-                });
-*/
-        //System.out.println(villianRequest); //
+
         return villainResponseMono;
     }
 }
