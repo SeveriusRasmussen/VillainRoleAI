@@ -1,39 +1,50 @@
-const foxImage = document.createElement("img")
-foxImage.id="foxImage";
-foxImage.alt="image of a fox";
-document.body.appendChild(foxImage);
+const responseContainer = document.createElement("div");
+responseContainer.id = "responseContainer";
+document.body.appendChild(responseContainer);
+
+// move existing AI response element into container
+const aiResponseElement = document.getElementById("aiResponse");
+responseContainer.appendChild(aiResponseElement);
+
+// create and append fox image
+const foxImage = document.createElement("img");
+foxImage.id = "foxImage";
+foxImage.alt = "image of a fox";
+responseContainer.appendChild(foxImage);
 
 fetchFox();
 
 //sends user question to AI
 function sendQuestion() {
-    const question = document.getElementById('question').value; //get question from user form.
-    const aiResponseElement = document.getElementById('aiResponse'); //get ai response element.
+    const question = document.getElementById('question').value;
+    const aiResponseElement = document.getElementById('aiResponse');
 
-    aiResponseElement.textContent = "Venter på svar..."; //set ai response
+    // clear current content and add spinner
+    aiResponseElement.innerHTML = `
+        <div class="spinner"></div>
+        <span style="margin-left: 10px;">Venter på svar...</span>
+    `;
 
     const url = 'http://localhost:8080/villain?question=' + question;
-    //get ai response from backend.
-    fetch(url)//fetch ai response from backend url.
+
+    fetch(url)
         .then(response => {
             if (!response.ok){
                 console.log("response not ok");
             }
-            return response.json();//convert response to json.
+            return response.json();
         })
         .then(data => {
-            console.log("data: " + data);
-            aiResponseElement.textContent = data.choices[0].message.content; //set ai response text: first message in Response.choices.
-            //console.log("set ai response text");
-
+            aiResponseElement.textContent = data.choices[0].message.content;
         })
-        .catch(error => { //error handling.
+        .catch(error => {
             console.log('Fejl: ' + error);
             aiResponseElement.textContent = "Noget gik galt, prøv igen.";
-        }); //end of fetch.
+        });
 
     fetchFox();
 }
+
 
 //get random image of a fox
 function fetchFox(){
