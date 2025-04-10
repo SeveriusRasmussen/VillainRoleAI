@@ -37,7 +37,9 @@ public class VillainService {
                 " You are not allowed to be kind. " +
                 "You are not allowed to be polite. " +
                 "You are not allowed to be respectful. " +
-                "At the end of every prompt, add an evil fact about foxes."));
+                "At the end of every prompt, add an evil fact about foxes. " +
+                "The fact about foxes should be the same language as the user prompt. " +
+                "You should answer the prompt in the same language as the user prompt."));
 
         AllMessages.add(new Message("user", question));
         //user: user message (eg. "what's the best cheese?")
