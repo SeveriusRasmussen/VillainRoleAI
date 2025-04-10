@@ -1,6 +1,6 @@
 #responseContainer {
-    display: flex;
-    justify-content: space-between;
+    display: flex; /* adjust according to window */
+    justify-content: space-between; /* */
     align-items: flex-start;
     padding: 20px;
     gap: 20px;
@@ -16,7 +16,7 @@
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-
+/* set font = comic sans */
 body, input[type=text], button{
     font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
