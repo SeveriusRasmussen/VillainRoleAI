@@ -27,6 +27,7 @@ function sendQuestion() {
 
     const url = 'http://localhost:8080/villain?question=' + question;
 
+    //fetch ai response.
     fetch(url)
         .then(response => {
             if (!response.ok){
@@ -57,8 +58,7 @@ function fetchFox(){
             return response.json();
         }).then(data => {
             console.log("image: " + data.image);
-            foxImage.src=data.image;
-            //return data.image; //return fox image.
+            foxImage.src=data.image; //set html image = just fetched image.
     }).catch(error => {
         console.log("fejl i ræv: " + error);
     });
